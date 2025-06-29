@@ -53371,7 +53371,7 @@ define('Bundle', ['exports', 'PublicState', 'EmojiMini'], (function (exports, Pu
         }, UI.createElement("h4", null, "Edit mode"), UI.createElement("p", null, "This mode allows you to edit nodes' labels and edges' costs."), UI.createElement("p", null, "Ways you can interact with the graph:"), UI.createElement("ul", null, UI.createElement("li", null, "Click on a node label to change it. Now you can start typing in order to edit the label. Click anywhere or press Enter to finish editing."), UI.createElement("li", null, "Click on an edge to change it's cost. Now you can start typing in order to edit the cost. Click anywhere or press Enter to finish editing."))), UI.createElement("div", {
           ref: "Delete"
         }, UI.createElement("h4", null, "Delete mode"), UI.createElement("p", null, "This mode allows you to delete nodes and/or edges."), UI.createElement("p", null, "Ways you can interact with the graph:"), UI.createElement("ul", null, UI.createElement("li", null, "Click on a node to delete it"), UI.createElement("li", null, "Click on an edge to delete it."))), UI.createElement("div", {
-          ref: "Config",
+          ref: "设置",
           style: {
             "padding-left": "20px"
           }
@@ -53469,7 +53469,7 @@ define('Bundle', ['exports', 'PublicState', 'EmojiMini'], (function (exports, Pu
           style: {
             "border-radius": "0"
           }
-        }, "Run Command"), UI.createElement("div", {
+        }, "快捷操作"), UI.createElement("div", {
           ref: "commandsList",
           style: {
             width: "8.2em"
@@ -53489,7 +53489,7 @@ define('Bundle', ['exports', 'PublicState', 'EmojiMini'], (function (exports, Pu
         this.Draw.hide();
         this.Edit.hide();
         this.Delete.hide();
-        this.Config.hide();
+        this.设置.hide();
         this[this.options.viewMode].show();
       }
 
@@ -53943,11 +53943,11 @@ define('Bundle', ['exports', 'PublicState', 'EmojiMini'], (function (exports, Pu
           this.graph.dispatch("changeDirected", event.value.toLocaleLowerCase());
         });
         this.toggleIndexType.addListener("setIndex", event => {
-          if (event.value === "0-index") {
+          if (event.value === "0为索引") {
             event.value = "0";
-          } else if (event.value === "1-index") {
+          } else if (event.value === "1为索引") {
             event.value = "1";
-          } else if (event.value === "Custom Labels") {
+          } else if (event.value === "自定义") {
             event.value = "custom";
           }
 
@@ -53956,7 +53956,7 @@ define('Bundle', ['exports', 'PublicState', 'EmojiMini'], (function (exports, Pu
         this.toggleViewMode.addListener("setIndex", event => {
           this.editorLegend.dispatch("changeLegend", event.value);
 
-          if (event.value === "Config") {
+          if (event.value === "设置") {
             event.value = "Force";
           }
 
@@ -54144,7 +54144,7 @@ define('Bundle', ['exports', 'PublicState', 'EmojiMini'], (function (exports, Pu
         }, UI.createElement(RadioButtonGroup, {
           level: Level.PRIMARY,
           ref: "toggleDirected",
-          givenOptions: ["Undirected", "Directed"]
+          givenOptions: ["无向", "有向"]
         })), UI.createElement(GraphInputPanel, {
           ref: "inputPanel",
           style: {
@@ -54161,7 +54161,7 @@ define('Bundle', ['exports', 'PublicState', 'EmojiMini'], (function (exports, Pu
         }, UI.createElement(RadioButtonGroup, {
           level: Level.PRIMARY,
           ref: "toggleIndexType",
-          givenOptions: ["0-index", "1-index", "Custom Labels"]
+          givenOptions: ["0为索引", "1为索引", "自定义"]
         })), UI.createElement("div", {
           ref: "svgBlock",
           style: {
@@ -54201,7 +54201,7 @@ define('Bundle', ['exports', 'PublicState', 'EmojiMini'], (function (exports, Pu
         }, UI.createElement(RadioButtonGroup, {
           level: Level.PRIMARY,
           ref: "toggleViewMode",
-          givenOptions: ["Force", "Draw", "Edit", "Delete", "Config"]
+          givenOptions: ["Force", "Draw", "Edit", "Delete", "设置"]
         })), UI.createElement(GraphEditorLegend, {
           ref: "editorLegend",
           viewMode: "Force",

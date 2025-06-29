@@ -53363,14 +53363,14 @@ define('Bundle', ['exports', 'PublicState', 'EmojiMini'], (function (exports, Pu
     let GraphEditorLegend = (_dec$l = registerStyle(DropdownListStyle), _dec$l(_class$o = class GraphEditorLegend extends Panel {
       render() {
         return [UI.createElement("div", {
-          ref: "Force"
-        }, UI.createElement("h4", null, "Force mode"), UI.createElement("p", null, "In this mode, there is a gravitation pull that acts on the nodes and keeps them in the center of the drawing area. Also, the nodes exert a force on each other, making the whole graph look and act like real objects in space."), UI.createElement("p", null, "Ways you can interact with the graph:"), UI.createElement("ul", null, UI.createElement("li", null, "Nodes support drag and drop."), UI.createElement("li", null, "At the end of the drop the node becomes fixed."), UI.createElement("li", null, "You can fix/unfix a node by simple click."))), UI.createElement("div", {
-          ref: "Draw"
-        }, UI.createElement("h4", null, "Draw mode"), UI.createElement("p", null, "This mode allows you to draw new nodes and/or edges."), UI.createElement("p", null, "Ways you can interact with the graph:"), UI.createElement("ul", null, UI.createElement("li", null, "Clicking anywhere on the graph canvas creates a new node."), UI.createElement("li", null, "Clicking on a node starts the drawing process of a new edge."), UI.createElement("li", null, "To cancel the new edge, click anywhere on the canvas."), UI.createElement("li", null, "To finish drawing the edge, click on the desired neighbour."))), UI.createElement("div", {
-          ref: "Edit"
-        }, UI.createElement("h4", null, "Edit mode"), UI.createElement("p", null, "This mode allows you to edit nodes' labels and edges' costs."), UI.createElement("p", null, "Ways you can interact with the graph:"), UI.createElement("ul", null, UI.createElement("li", null, "Click on a node label to change it. Now you can start typing in order to edit the label. Click anywhere or press Enter to finish editing."), UI.createElement("li", null, "Click on an edge to change it's cost. Now you can start typing in order to edit the cost. Click anywhere or press Enter to finish editing."))), UI.createElement("div", {
-          ref: "Delete"
-        }, UI.createElement("h4", null, "Delete mode"), UI.createElement("p", null, "This mode allows you to delete nodes and/or edges."), UI.createElement("p", null, "Ways you can interact with the graph:"), UI.createElement("ul", null, UI.createElement("li", null, "Click on a node to delete it"), UI.createElement("li", null, "Click on an edge to delete it."))), UI.createElement("div", {
+          ref: "力学"
+        }, UI.createElement("h4", null, "力学 mode"), UI.createElement("p", null, "In this mode, there is a gravitation pull that acts on the nodes and keeps them in the center of the drawing area. Also, the nodes exert a force on each other, making the whole graph look and act like real objects in space."), UI.createElement("p", null, "Ways you can interact with the graph:"), UI.createElement("ul", null, UI.createElement("li", null, "Nodes support drag and drop."), UI.createElement("li", null, "At the end of the drop the node becomes fixed."), UI.createElement("li", null, "You can fix/unfix a node by simple click."))), UI.createElement("div", {
+          ref: "添加"
+        }, UI.createElement("h4", null, "添加 mode"), UI.createElement("p", null, "This mode allows you to draw new nodes and/or edges."), UI.createElement("p", null, "Ways you can interact with the graph:"), UI.createElement("ul", null, UI.createElement("li", null, "Clicking anywhere on the graph canvas creates a new node."), UI.createElement("li", null, "Clicking on a node starts the drawing process of a new edge."), UI.createElement("li", null, "To cancel the new edge, click anywhere on the canvas."), UI.createElement("li", null, "To finish drawing the edge, click on the desired neighbour."))), UI.createElement("div", {
+          ref: "编辑"
+        }, UI.createElement("h4", null, "编辑 mode"), UI.createElement("p", null, "This mode allows you to edit nodes' labels and edges' costs."), UI.createElement("p", null, "Ways you can interact with the graph:"), UI.createElement("ul", null, UI.createElement("li", null, "Click on a node label to change it. Now you can start typing in order to edit the label. Click anywhere or press Enter to finish editing."), UI.createElement("li", null, "Click on an edge to change it's cost. Now you can start typing in order to edit the cost. Click anywhere or press Enter to finish editing."))), UI.createElement("div", {
+          ref: "删除"
+        }, UI.createElement("h4", null, "删除 mode"), UI.createElement("p", null, "This mode allows you to delete nodes and/or edges."), UI.createElement("p", null, "Ways you can interact with the graph:"), UI.createElement("ul", null, UI.createElement("li", null, "Click on a node to delete it"), UI.createElement("li", null, "Click on an edge to delete it."))), UI.createElement("div", {
           ref: "设置",
           style: {
             "padding-left": "20px"
@@ -53485,10 +53485,10 @@ define('Bundle', ['exports', 'PublicState', 'EmojiMini'], (function (exports, Pu
       }
 
       showMode() {
-        this.Force.hide();
-        this.Draw.hide();
-        this.Edit.hide();
-        this.Delete.hide();
+        this.力学.hide();
+        this.添加.hide();
+        this.编辑.hide();
+        this.删除.hide();
         this.设置.hide();
         this[this.options.viewMode].show();
       }
@@ -53546,7 +53546,7 @@ define('Bundle', ['exports', 'PublicState', 'EmojiMini'], (function (exports, Pu
         for (let node of this.nodes) {
           node.removeClickListener(node.click);
 
-          if (this.mode === "Edit" || this.mode === "Draw") {
+          if (this.mode === "Edit" || this.mode === "添加") {
             node.addClickListener(node._fixNodeCallback);
           }
         }
@@ -53555,18 +53555,18 @@ define('Bundle', ['exports', 'PublicState', 'EmojiMini'], (function (exports, Pu
           edge.removeClickListener(edge.click);
         }
 
-        if (this.mode === "Draw") {
+        if (this.mode === "添加") {
           this.parent.removeClickListener(this.parent.click);
         }
       }
 
       enterForceMode() {
         this.unpauseForce();
-        this.mode = "Force";
+        this.mode = "力学";
       }
 
       enterDrawMode() {
-        this.mode = "Draw";
+        this.mode = "添加";
         this.pauseForce();
 
         let nodeClickFunc = node => {
@@ -53665,7 +53665,7 @@ define('Bundle', ['exports', 'PublicState', 'EmojiMini'], (function (exports, Pu
       }
 
       enterEditMode() {
-        this.mode = "Edit";
+        this.mode = "编辑";
         this.pauseForce();
 
         for (let node of this.nodes) {
@@ -53734,7 +53734,7 @@ define('Bundle', ['exports', 'PublicState', 'EmojiMini'], (function (exports, Pu
       }
 
       enterDeleteMode() {
-        this.mode = "Delete";
+        this.mode = "删除";
         this.pauseForce();
 
         for (let node of this.nodes) {
@@ -53808,19 +53808,19 @@ define('Bundle', ['exports', 'PublicState', 'EmojiMini'], (function (exports, Pu
           this.removeListeners();
 
           switch (view) {
-            case "Force":
+            case "力学":
               this.enterForceMode();
               break;
 
-            case "Draw":
+            case "添加":
               this.enterDrawMode();
               break;
 
-            case "Edit":
+            case "编辑":
               this.enterEditMode();
               break;
 
-            case "Delete":
+            case "删除":
               this.enterDeleteMode();
           }
         });
@@ -53957,7 +53957,7 @@ define('Bundle', ['exports', 'PublicState', 'EmojiMini'], (function (exports, Pu
           this.editorLegend.dispatch("changeLegend", event.value);
 
           if (event.value === "设置") {
-            event.value = "Force";
+            event.value = "力学";
           }
 
           this.graph.dispatch("changeViewMode", event.value);
@@ -54144,7 +54144,7 @@ define('Bundle', ['exports', 'PublicState', 'EmojiMini'], (function (exports, Pu
         }, UI.createElement(RadioButtonGroup, {
           level: Level.PRIMARY,
           ref: "toggleDirected",
-          givenOptions: ["无向", "有向"]
+          givenOptions: ["Undirected", "Directed"]
         })), UI.createElement(GraphInputPanel, {
           ref: "inputPanel",
           style: {
@@ -54201,10 +54201,10 @@ define('Bundle', ['exports', 'PublicState', 'EmojiMini'], (function (exports, Pu
         }, UI.createElement(RadioButtonGroup, {
           level: Level.PRIMARY,
           ref: "toggleViewMode",
-          givenOptions: ["Force", "Draw", "Edit", "Delete", "设置"]
+          givenOptions: ["力学", "添加", "编辑", "删除", "设置"]
         })), UI.createElement(GraphEditorLegend, {
           ref: "editorLegend",
-          viewMode: "Force",
+          viewMode: "力学",
           style: {
             "border": "1px solid black",
             "border-radius": "5px",
